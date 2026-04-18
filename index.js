@@ -45,3 +45,42 @@ const bookStore = {
 
 // Write your code here!
 
+
+// 1. Update the existing title
+const header = document.getElementById("header");
+header.textContent = bookStore.name;
+
+// 2. Select the book list container
+const bookList = document.getElementById("book-list");
+
+// 3. Loop through books and create DOM elements
+bookStore.books.forEach((book) => {
+
+    // book container (must be li because existing structure uses ul > li)
+    const bookContainer = document.createElement("li");
+
+    // book title
+    const bookTitle = document.createElement("h3");
+    bookTitle.textContent = book.title;
+
+    // book author
+    const bookAuthor = document.createElement("p");
+    bookAuthor.textContent = book.author;
+
+    // book image
+    const bookImage = document.createElement("img");
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title;
+
+    // append elements
+    bookContainer.appendChild(bookImage);
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+
+    // append to list
+    bookList.appendChild(bookContainer);
+});
+
+// OPTIONAL (not required but clean): remove example template item
+const oldItem = document.getElementById("delete-this");
+if (oldItem) oldItem.remove();
